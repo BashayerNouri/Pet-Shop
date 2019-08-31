@@ -1,0 +1,48 @@
+{% extends "base.html" %} 
+
+{% block title %}List of Pets{% endblock title %}
+
+{% block content %}
+
+<br>
+
+
+<br>
+<div class="row">
+ 
+
+{% for pet in pets %}
+
+{% if pet.available == True %}
+
+
+<div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4 my-3 d-flex align-items-stretch">
+<div class="card border-primary mb-3" style="width: 18rem;">
+    <div class="card-header">
+    Pet #{{pet.id}}
+  </div>
+  <img class="card-img-top" src="{{pet.Image.url}}" alt="Card image cap">
+  <div class="card-body">
+    <a href="{% url 'pet-detail' pet.id %}"><h5 class="card-title">{{pet.name}}</h5></a>
+    <span  class="badge badge-pill badge-warning">Available</span>
+        <p class="card-text"><small class="text-muted">Last updated {{pet.last_update|timesince}} ago </small></p>
+
+
+    
+  
+  </div>
+    <div class="card-footer text-muted">
+            <a id="btn" href="{% url 'pet-detail' pet.id %}"><button type="button" class="btn btn btn-danger btn-block">Read More...</button></a>
+  </div>
+</div>
+</div>
+
+
+{% endif %} 
+{% endfor %}
+</div>
+{% endblock content %}
+
+
+
+

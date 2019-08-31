@@ -1,0 +1,75 @@
+{% extends "base.html" %} 
+
+{% block title %}Pet Detail{% endblock title %} 
+
+{% block content %}
+
+<div class="container">
+	<br>  <h1 class="text-center">Pet Detail</h1>
+<hr>
+
+<div class="card">
+	<div class="row">
+		<aside style="height:500px;" class="col-sm-5 border-right">
+<article class="gallery-wrap"> 
+<div class="img-big-wrap">
+  <div>
+
+
+  	<div class="hover01 column">
+  <div>
+    <figure><img id="img" src="{{pet.Image.url}}" /></figure>
+  </div>
+  <div>
+
+  </div>
+</div> <!-- slider-product.// -->
+
+</article> <!-- gallery-wrap .end// -->
+		</aside>
+		<aside class="col-sm-7">
+<article class="card-body p-5">
+	<h3 class="title mb-3">{{pet.name}}</h3>
+
+<p class="price-detail-wrap"> 
+	<span class="price h3 text-warning"> 
+		<span class="currency"></span><span class="num">{{pet.price}} KWD</span>
+	</span> 
+</p> <!-- price-detail-wrap .// -->
+<dl class="param param-feature">
+  <dt>ID#</dt>
+  <dd>{{pet.id}}</dd>
+</dl>  <!-- item-property-hor .// -->
+<dl class="param param-feature">
+  <dt>Age</dt>
+  <dd>{{pet.age}} months</dd>
+</dl>  <!-- item-property-hor .// -->
+<dl class="param param-feature">
+  <dt>Availability</dt>
+
+{% if pet.available == True %}
+
+  <dd><span class="badge badge-pill badge-warning">Available</span></dd>
+{% else %}
+<dd><span class="badge badge-pill badge-danger">Not Available</span></dd>
+</dl>  <!-- item-property-hor .// -->
+{% endif %}
+
+
+	<hr>
+
+{% if request.user.is_staff %}
+	<a href="{% url 'pet-update' pet.id %}" class="btn btn-lg btn-success text-uppercase"> Edit Informations </a>
+	<a href="{% url 'pet-delete' pet.id %}" class="btn btn-lg btn-danger text-uppercase"></i> Delete </a>
+{% endif %}
+</article> <!-- card-body.// -->
+		</aside> <!-- col.// -->
+	</div> <!-- row.// -->
+</div> <!-- card.// -->
+
+
+</div>
+<!--container.//-->
+
+{% endblock content %}
+

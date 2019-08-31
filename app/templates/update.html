@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Update A Pet Info{% endblock title %}
+
+{% block content %}
+  <h1 class="my-5">Update A Pet Info</h1>
+<div class="jumbotron container-fluid">
+<form action="{% url 'pet-update' pet.id %}" method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{form|crispy}}
+  <input class="btn btn-success btn-block" type="submit" value="Update">
+</form>
+</div>
+{% endblock content %}
